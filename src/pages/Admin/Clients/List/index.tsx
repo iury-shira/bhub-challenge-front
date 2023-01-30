@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Client } from '../../../../types/client';
 import { requestBackend } from '../../../../util/requests';
+import ClientCrudCard from '../ClientCrudCard';
 import './styles.css';
 
 const List = () => {
@@ -43,7 +44,7 @@ const List = () => {
                 {
                     clients?.map(client => (
                         <div className='col-sm-6 col-md-12' key={client.id}>
-                            <h1>{client.corporate_name}</h1>
+                            <ClientCrudCard client={client} onDelete={() => getClients()}/>
                         </div>
                     ))
                 }
