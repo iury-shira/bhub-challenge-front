@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# Bhub Challenge: Front end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple react application, using TypeScript, which can be used to perform perform basic CRUD
+operations on a SQLite relational test database located at the back end application server. It also has a user authentication mechanism, with JWT token saved within users browser local storage.
 
-## Available Scripts
+## Why these technologis was chosen?
 
-In the project directory, you can run:
+- React.js works with the SPA (Single Page Application) idea, where a virtual DOM representing the UI in maintained in memory, to check which components/nodes need to be updated in fact. This allows the application to have a better responsiveness to the users interactions
 
-### `yarn start`
+- Using React also allow the developer to be more productive in comparison to work with vanilla JS and pure HTML/CSS files
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Bootstrap (and Sass for editing) was used once it already provides a bunch of aesthetic customizations for the components styles
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Both react-router-dom and react-hook-form libraries were used to give a better productive and proffessional development of the app routes and forms
 
-### `yarn test`
+- TypeScript has a nice workflow with React and make our codebase more type safe
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation and set up
 
-### `yarn build`
+First of all, run the back end app and register a user (a username of email type and password), then apply/follow the steps bellow:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Have Node 16.1+ and yarn 1.2+ installed on local machine
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Clone this project/git repo on local machine
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Go to the directory where the repo was cloned and install de yarn dependencies (where package.json is)
 
-### `yarn eject`
+```bash
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Then, with the back end application already running on 'http://localhost:8000/', run the test version of the front app:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Now users can use its own browser to access 'http://localhost:3000/' to have a nice and friendly UI to interact with the CRUD operations of client and bank accounts resources/entities. It is important to notice that first the user should have a username (email type) and password registered at back end to be able to authenticate and navigate through the front app routes.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Usage and testing
 
-## Learn More
+The front app has the following routes:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- /admin/auth
+- /admin/auth/signup
+- /admin/auth/recover
+- /admin/login
+- /admin/clients
+- /admin/clients/:clientId
+- /admin/clients/create
+- /admin/bankaccounts
+- /admin/bankaccounts/ownerId/:ownerId
+- /admin/bankaccounts/edit/:bankAccountId
+- /admin/bankaccounts/create/:ownerId
+- /admin/users
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+It is important to notice that, in order to be able to create a new bank account, you should first access the "edit" option of a client entity, and then select the option of "editing this client bank accounts". This design was chosen to enforce that every bank account created in the system should be related to a client.
+
+Another enforced design was the disablement of the "owner_id" field of a bank account when a user tries to edit/create an entity of this type. Once this "owner_id" field should be a foreign key in our relational database, it was preferred to not rely on user that this field would be filled correctly.
+
+## What can be improved
+
+Due to the short deadline and the basic nature of this application, a lot could be improved, either in terms of codebase/business logic complexity and deployment/infrastructure:
+
+- Implementation of JEST tests and React Testing library
+
+- Implementation of Pagination and Search Bars
+
+- Implementation of '/admin/auth/signup' and '/admin/auth/recover' routes flows
+
+- SSL certificates for HTTPS communication
+
+- Implementation of loaders cards (for a better UX when the user has poor network connection)
+
+- Dockerize and build the React application
+
+- Deploy on a Cloud provider
+
+- Optional Firebase authentication integration
+
+- A complete CRUD for user entity
+
+- Enable different routes and components based on different roles for different users
+
+- A better validation (with Regex) of the fields, before saving them at the DB
+
+- As the project grows in complexity and gets more resources, would be preferable to:
+
+    - Use a more complex managment state tool, as Redux
+
+    - Separated and customized exception objects
+
+
+Pull requests are welcome. There's a lot that can improve in this project.
