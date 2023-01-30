@@ -11,7 +11,7 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/bankaccounts" className="admin-nav-item">
+                    <NavLink to={`/admin/bankaccounts`} className="admin-nav-item">
                         <p>Contas Bancárias</p>
                     </NavLink>
                 </li>

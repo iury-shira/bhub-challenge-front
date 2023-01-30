@@ -36,7 +36,8 @@ const ClientCrudCard = ({ client, onDelete }: Props) => {
             </div>
             <div className='client-crud-card-description'>
                 <div className='client-crud-card-bottom-container'>
-                    <h6>{client.corporate_name}</h6>
+                    <h6>Razao: {client.corporate_name}</h6>
+                    <h6>Id: {client.id}</h6>
                     <h6>Contato: {client.phone_number}</h6>
                     <h6>Declarado: {client.declared_billing}</h6>
                     <h6>Data: {client.created_at.slice(0, 10)}</h6>

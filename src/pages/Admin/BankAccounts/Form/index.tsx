@@ -8,13 +8,15 @@ import './styles.css';
 
 type UrlParams = {
     bankAccountId: string;
+    ownerId: string;
 };
 
 const Form = () => {
 
-    const { bankAccountId } = useParams<UrlParams>();
+    const { bankAccountId, ownerId } = useParams<UrlParams>();
 
-    const isEditing = bankAccountId !== 'create';
+    // const isEditing = bankAccountId !== 'create';
+    const isEditing = typeof ownerId === 'undefined';
 
     const history = useHistory();
 
@@ -35,7 +37,10 @@ const Form = () => {
                     setValue('owner_id', bankAccount.owner_id);
                 }
             );
+        } else {
+            setValue('owner_id', parseInt(ownerId));
         }
+
     },[isEditing, bankAccountId, setValue]);
 
     const onSubmit = (formData: BankAccount) => {
@@ -50,7 +55,7 @@ const Form = () => {
         requestBackend(config)
             .then(response => {
                 console.log(response.data)
-                history.push('/admin/bankaccounts');
+                history.push('/admin/bankaccounts/');
             })
             .catch(error => {
                 console.log('ERRO', error);
@@ -77,6 +82,7 @@ const Form = () => {
                                     className={`form-control base-input ${errors.agency ? 'is-invalid' : ''}`}
                                     placeholder="Agencia bancaria"
                                     name="agency"
+                                    title='Agencia bancaria'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.agency?.message}</div>
                             </div>
@@ -89,6 +95,7 @@ const Form = () => {
                                     className={`form-control base-input ${errors.account ? 'is-invalid' : ''}`}
                                     placeholder="Conta bancaria"
                                     name="account"
+                                    title='Conta bancaria'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.account?.message}</div>
                             </div>
@@ -103,6 +110,7 @@ const Form = () => {
                                     className={`form-control base-input ${errors.bank ? 'is-invalid' : ''}`}
                                     placeholder="Banco"
                                     name="bank"
+                                    title='Nome do banco'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.bank?.message}</div>
                             </div>
@@ -116,6 +124,7 @@ const Form = () => {
                                     placeholder="Id do cliente"
                                     name="owner_id"
                                     disabled={true}
+                                    title='Id do cliente dono da conta'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.owner_id?.message}</div>
                             </div>

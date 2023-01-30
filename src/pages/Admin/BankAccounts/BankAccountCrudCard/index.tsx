@@ -48,7 +48,7 @@ const BankAccountCrudCard = ({ bankAccount, onDelete }: Props) => {
                 <button className='btn btn-outline-danger bank-account-crud-card-button' onClick={() => handleDelete(bankAccount.id)}>
                     EXCLUIR
                 </button>
-                <Link to={`/admin/bankaccounts/${bankAccount.id}`}>
+                <Link to={`/admin/bankaccounts/edit/${bankAccount.id}`}>
                     <button className='btn btn-outline-secondary bank-account-crud-card-button'>
                         EDITAR
                     </button>

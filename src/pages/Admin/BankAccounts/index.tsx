@@ -5,10 +5,16 @@ import List from "./List";
 const BankAccounts = () => {
     return(
         <Switch>
-            <Route path='/admin/bankaccounts' exact>
+            <Route path='/admin/bankaccounts/' exact>
                 <List/>
             </Route>
-            <Route path='/admin/bankaccounts/:bankAccountId'>
+            <Route path='/admin/bankaccounts/ownerId/:ownerId'>
+                <List/>
+            </Route>
+            <Route path='/admin/bankaccounts/edit/:bankAccountId'>
+                <Form/>
+            </Route>
+            <Route path='/admin/bankaccounts/create/:ownerId'>
                 <Form/>
             </Route>
         </Switch>

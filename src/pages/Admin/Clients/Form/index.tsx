@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Client } from '../../../../types/client';
 import { requestBackend } from '../../../../util/requests';
 import './styles.css';
@@ -26,16 +26,16 @@ const Form = () => {
             requestBackend(
                 { url: `/client/${clientId}`, withCredentials: true }
             )
-            .then(
-                (response) => {
-                    const client = response.data as Client;
-                    setValue('corporate_name', client.corporate_name);
-                    setValue('phone_number', client.phone_number);
-                    setValue('declared_billing', client.declared_billing);
-                }
-            );
+                .then(
+                    (response) => {
+                        const client = response.data as Client;
+                        setValue('corporate_name', client.corporate_name);
+                        setValue('phone_number', client.phone_number);
+                        setValue('declared_billing', client.declared_billing);
+                    }
+                );
         }
-    },[isEditing, clientId, setValue]);
+    }, [isEditing, clientId, setValue]);
 
     const onSubmit = (formData: Client) => {
 
@@ -76,6 +76,7 @@ const Form = () => {
                                     className={`form-control base-input ${errors.corporate_name ? 'is-invalid' : ''}`}
                                     placeholder="Razão social da empresa cliente"
                                     name="corporate_name"
+                                    title='Razao Social'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.corporate_name?.message}</div>
                             </div>
@@ -88,13 +89,14 @@ const Form = () => {
                                     className={`form-control base-input ${errors.phone_number ? 'is-invalid' : ''}`}
                                     placeholder="Número de telefone do cliente"
                                     name="phone_number"
+                                    title='Telefone para contato'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.phone_number?.message}</div>
                             </div>
                         </div>
                         <div className='col-lg-6'>
                             <div>
-                            <input
+                                <input
                                     {...register("declared_billing", {
                                         required: 'Campo obrigatório',
                                     })}
@@ -102,8 +104,10 @@ const Form = () => {
                                     className={`form-control base-input ${errors.declared_billing ? 'is-invalid' : ''}`}
                                     placeholder="Renda declarada"
                                     name="declared_billing"
+                                    title='Renda declarada'
                                 />
                                 <div className='invalid-feedback d-block'>{errors.declared_billing?.message}</div>
+                                <Link to={`/admin/bankaccounts/ownerId/${clientId}`} className='client-go-to-bank-account'><p>Editar contas bancárias desse cliente</p></Link>
                             </div>
                         </div>
                     </div>

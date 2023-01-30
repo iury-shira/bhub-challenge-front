@@ -1,8 +1,13 @@
-import './styles.css';
+import { Route, Switch } from "react-router-dom";
+import List from "./List";
 
 const Users = () => {
     return(
-        <h1>Users Page</h1>
+        <Switch>
+            <Route path='/admin/users' exact>
+                <List/>
+            </Route>
+        </Switch>
     );
 }
 
