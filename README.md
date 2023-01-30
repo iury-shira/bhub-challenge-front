@@ -76,6 +76,8 @@ Due to the short deadline and the basic nature of this application, a lot could 
 
 - Deploy on a Cloud provider
 
+- Implement CI/CD deployment/build flows
+
 - Optional Firebase authentication integration
 
 - A complete CRUD for user entity
