@@ -6,28 +6,20 @@ import { AuthContext } from '../../AuthContext';
 import { getTokenData, isAuthenticated } from '../../util/auth';
 import { removeAuthData } from '../../util/storage';
 
-/*
-type AuthData = {
-    authenticated: boolean;
-    tokenData?: TokenData;
-}
-*/
-
 function Navbar() {
-
-    // const [authData, setAuthData] = useState<AuthData>({ authenticated: false });
 
     const { authContextData, setAuthContextData } = useContext(AuthContext);
 
     useEffect(() => {
+
+        console.log('mexeu')
+
         if (isAuthenticated()) {
-            // setAuthData({
             setAuthContextData({
                 authenticated: true,
                 tokenData: getTokenData()
             });
         } else {
-            // setAuthData({
             setAuthContextData({
                 authenticated: false
             })
@@ -37,7 +29,6 @@ function Navbar() {
     const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         removeAuthData();
-        // setAuthData({
         setAuthContextData({
             authenticated: false
         });
@@ -54,7 +45,7 @@ function Navbar() {
                     {
                         authContextData.authenticated ? (
                             <>
-                                <span className='nav-username'>{authContextData.tokenData?.user_name}</span>
+                                <span className='nav-username'>{authContextData.tokenData?.sub.split(' ')[0]}</span>
                                 <a href='#logout' onClick={handleLogoutClick}>LOGOUT</a>
                             </>
                         ) : (

@@ -3,7 +3,7 @@ import { getAuthData } from './storage';
 
 export type TokenData = {
     exp: number;
-    user_name: string;
+    sub: string;
 }
 
 export const getTokenData = () : TokenData | undefined => {

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../../../AuthContext';
 import ButtonIcon from '../../../../components/ButtonIcon';
+import { getTokenData } from '../../../../util/auth';
 import { requestBackendLogin } from '../../../../util/requests';
 import { saveAuthData } from '../../../../util/storage';
 import './styles.css';
@@ -21,7 +23,7 @@ const Login = () => {
 
     const { from } = location.state || { from: { pathname: '/admin' } };
 
-    //  { authContextData, setAuthContextData } = useContext(AuthContext);
+    const { authContextData, setAuthContextData } = useContext(AuthContext);
 
     const [hasError, setHasError] = useState(false);
     
@@ -34,19 +36,15 @@ const Login = () => {
         .then( response => {
             setHasError(false);
             saveAuthData(response.data);
-            console.log('SUCESSO', response);
-            /*
             setAuthContextData({
                 authenticated: true,
                 tokenData: getTokenData(),
             });
-            */
             // history.push(from);
             history.replace(from);
         })
         .catch( error => {
             setHasError(true);
-            console.log('ERRO', error);
         })
     };
 
