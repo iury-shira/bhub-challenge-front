@@ -63,7 +63,7 @@ const Form = () => {
     return (
         <div className='client-crud-contaner'>
             <div className='base-card client-crud-form-card'>
-                <h1 className='client-crud-form-title'>DADOS DO PRODUTO</h1>
+                <h1 className='client-crud-form-title'>DADOS DO CLIENTE</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='row client-crud-inputs-container'>
                         <div className='col-lg-6 client-crud-inputs-left-container'>

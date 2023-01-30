@@ -8,7 +8,7 @@ const BankAccounts = () => {
             <Route path='/admin/bankaccounts' exact>
                 <List/>
             </Route>
-            <Route path='/admin/bankaccounts/:bankaccountId'>
+            <Route path='/admin/bankaccounts/:bankAccountId'>
                 <Form/>
             </Route>
         </Switch>

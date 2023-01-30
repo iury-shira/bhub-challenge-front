@@ -1,0 +1,52 @@
+.bank-account-crud-form-card {
+    padding: 20px;
+}
+
+.bank-account-crud-form-title {
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #263238;
+    margin-bottom: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.bank-account-crud-inputs-container {
+    margin-bottom: 30px;
+}
+
+.bank-account-crud-inputs-left-container {
+    margin-bottom: 30px;
+}
+
+.bank-account-crud-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bank-account-crud-button {
+    height: 50px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+@media (min-width: 576px) {
+    .bank-account-crud-buttons-container {
+        justify-content: flex-end;
+    }
+    
+    .bank-account-crud-button {
+        margin-left: 30px;
+        width: 270px;
+    }
+}
+
+@media (min-width: 992px) {
+    .bank-account-crud-inputs-left-container {
+        margin-bottom: 0;
+    }
+}

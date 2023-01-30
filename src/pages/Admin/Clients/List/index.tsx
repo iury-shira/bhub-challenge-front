@@ -8,7 +8,6 @@ import './styles.css';
 
 const List = () => {
 
-    // const [page, setPage] = useState<SpringPage<Product>>();
     const [clients, setClients] = useState<Client[]>();
 
     useEffect(() => {
